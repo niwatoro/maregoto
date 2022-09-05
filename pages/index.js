@@ -2,14 +2,21 @@ import {
     Box,
     VStack,
     Heading,
+    Center,
 } from "@chakra-ui/react"
+import {
+    VocabularyButton,
+    ReadingButton,
+} from "./components/action"
 
-export default function Home(){
+export default function Home() {
     return (
         <Box>
-            <VStack>
+            <Center>
                 <Heading>マレゴト</Heading>
-            </VStack>
+            </Center>
+            <VocabularyButton />
+            <ReadingButton />
         </Box>
     )
 }
