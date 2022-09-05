@@ -40,7 +40,7 @@ export default function Reading() {
 
     return (
         <Box>
-            {data.text}
+            {text}
         </Box>
     )
 }
