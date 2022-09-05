@@ -7,7 +7,7 @@ import {
 import {
     VocabularyButton,
     ReadingButton,
-} from "./components/action"
+} from "../components/action"
 
 export default function Home() {
     return (
