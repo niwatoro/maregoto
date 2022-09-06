@@ -5,6 +5,9 @@ import {
     Center,
     HStack,
     VStack,
+    Progress,
+    Button,
+    Text,
     useControllableState
 } from "@chakra-ui/react"
 import {
@@ -17,21 +20,31 @@ import path from "path"
 
 export default function Vocabulary(props) {
     const [index, setIndex] = useControllableState({ defaultValue: 0 })
+    const [isClickedPinyin, setClickedPinyin] = useState(false)
+
+    const length = props.objectData.length
     const word = props.objectData[index].word
     const pinyin = props.objectData[index].pinyin
-    console.log(index)
+    const pinyin_button = isClickedPinyin ? pinyin : "拼音を見る"
     return (
         <Box>
             <CloseButton />
+            <Progress value={index / length * 100} />
             <Box>
-                <Center>
-                    <BackButton onClick={() => setIndex(index - 1)} />
-                    <VStack
-                        width="100px">
-                        <Box>{word}</Box>
-                        <Box>{pinyin}</Box>
+                <Center margin="50px">
+                    <BackButton onClick={() => {
+                        setClickedPinyin(false)
+                        setIndex(Math.max(0, index - 1))
+                    }} />
+                    <VStack width="250px">
+                        <Text>No. {index + 1}</Text>
+                        <Box fontSize="6xl">{word}</Box>
+                        <Button onClick={() => setClickedPinyin(true)}>{pinyin_button}</Button>
                     </VStack>
-                    <NextButton onClick={() => setIndex(index + 1)} />
+                    <NextButton onClick={() => {
+                        setClickedPinyin(false)
+                        setIndex(Math.min(length - 1, index + 1))
+                    }} />
                 </Center>
             </Box>
         </Box>
