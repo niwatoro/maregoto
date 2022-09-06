@@ -10,11 +10,12 @@ import {
 } from "react-icons/gi"
 import NextLink from "next/link"
 
-function BaseButton({ href, icon }) {
+function BaseButton({ href, icon, colorScheme }) {
     return (
         <Box margin="20px">
             <NextLink href={href} passHref>
                 <IconButton
+                    colorScheme={colorScheme}
                     height="100px"
                     width="100px"
                     icon={icon}
@@ -26,12 +27,18 @@ function BaseButton({ href, icon }) {
 
 export function VocabularyButton() {
     return (
-        <BaseButton href="vocabulary" icon={<GiBrain />} />
+        <BaseButton
+        href="vocabulary"
+        icon={<GiBrain />}
+        colorScheme="teal" />
     )
 }
 
 export function ReadingButton() {
     return (
-        <BaseButton href="reading" icon={<GiSpellBook />} />
+        <BaseButton
+        href="reading"
+        icon={<GiSpellBook />}
+        colorScheme="pink" />
     )
 }

@@ -4,7 +4,9 @@ import {
     Spinner,
     Center
 } from "@chakra-ui/react"
-import {cncut} from "cncut"
+import {
+    CloseButton
+} from "../components/ui"
 
 export default function Reading() {
     const [data, setData] = useState(null)
@@ -34,8 +36,12 @@ export default function Reading() {
     const getKey = () => { for (let key in pages) return key }
     const text = pages[getKey()].extract
 
-    const cn = cncut()
-    console.log(cn.cut(text).join("/"))
-
-    return <Box>{text}</Box>
+    return (
+        <Box>
+            <CloseButton />
+            <Box>
+                {text}
+            </Box>
+        </Box>
+    )
 }
