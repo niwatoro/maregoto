@@ -1,9 +1,10 @@
-import React, {useState,useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import {
     Box,
     Spinner,
     Center
 } from "@chakra-ui/react"
+import {cncut} from "cncut"
 
 export default function Reading() {
     const [data, setData] = useState(null)
@@ -11,8 +12,8 @@ export default function Reading() {
 
     useEffect(() => {
         setLoading(true)
-        fetch("https://zh.wikipedia.org/w/api.php?action=query&prop=extracts&titles=next.js&explaintext")
-            .then((response) => response.json())
+        fetch("/api/get_wikipedia")
+            .then((res) => res.json())
             .then((data) => {
                 setData(data)
                 setLoading(false)
@@ -21,26 +22,20 @@ export default function Reading() {
 
     if (isLoading) {
         return (
-            <Box>
-                <Center>
-                    <Spinner
-                        size="xl"
-                        color="blue.500" />
-                </Center>
-            </Box>
-        )
+            <Center>
+                <Spinner size="xl" />
+            </Center>)
     }
     if (!data) {
-        return (
-            <Box>No Data</Box>
-        )
+        return <Box>No data</Box>
     }
 
-    const text = data.query.pages[0].extract
+    const pages = data.query.pages
+    const getKey = () => { for (let key in pages) return key }
+    const text = pages[getKey()].extract
 
-    return (
-        <Box>
-            {text}
-        </Box>
-    )
+    const cn = cncut()
+    console.log(cn.cut(text).join("/"))
+
+    return <Box>{text}</Box>
 }
