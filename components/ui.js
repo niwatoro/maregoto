@@ -2,6 +2,7 @@ import {
     Box,
     IconButton,
     Link,
+    Button,
 } from "@chakra-ui/react"
 import {
     CloseIcon,
@@ -25,10 +26,10 @@ export function CloseButton() {
     )
 }
 
-function BaseButton({icon,onClick}) {
+function BaseButton({ icon, onClick }) {
     return (
         <IconButton
-        onClick={onClick}
+            onClick={onClick}
             height="80px"
             width="80px"
             fontSize="xl"
@@ -39,13 +40,13 @@ function BaseButton({icon,onClick}) {
 
 }
 
-export function BackButton({onClick}) {
+export function BackButton({ onClick }) {
     return (
         <BaseButton onClick={onClick} icon={<ArrowLeftIcon />} />
     )
 }
 
-export function NextButton({onClick}) {
+export function NextButton({ onClick }) {
     return (
         <BaseButton onClick={onClick} icon={<ArrowRightIcon />} />
     )

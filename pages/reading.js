@@ -5,15 +5,21 @@ import {
     Center,
     Heading,
     VStack,
+    Text,
+    Wrap,
+    WrapItem,
+    useToast,
 } from "@chakra-ui/react"
 import {
-    CloseButton
+    CloseButton,
 } from "../components/ui"
+import pinyin from "pinyin"
 
 export default function Reading() {
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(false)
-    const article_id = 32515651
+    const article_id = 32516945
+    const toast = useToast()
 
     useEffect(() => {
         setLoading(true)
@@ -41,26 +47,31 @@ export default function Reading() {
         return <Box>No data</Box>
     }
 
-    // const pages = data.query.pages
-    // const getKey = () => { for (let key in pages) return key }
-    // const text = pages[getKey()].extract
-    console.log(data)
-
     return (
         <Box>
             <CloseButton />
             <Center>
-                <VStack width="500px">
+                <VStack width="600px">
                     <Heading>{data.title}</Heading>
                     <Box>
-                        {data.body.split("\n").map((elem, idx) => {
-                            return (
-                                <Box key={idx}>
-                                    <Box>{elem}</Box>
-                                    <br />
-                                </Box>
-                            )
-                        })}
+                        {data.body.split("\n").map((elem, idx) =>
+                            <Box key={idx}>
+                                <Wrap spacing="0">{
+                                    [...elem].map((elem, idx) =>
+                                        <WrapItem
+                                            key={idx}
+                                            onClick={() => {
+                                                toast.closeAll()
+                                                toast({
+                                                    title: pinyin(elem)
+                                                })
+                                            }}>
+                                            {elem}
+                                        </WrapItem>)
+                                }</Wrap>
+                                <br />
+                            </Box>
+                        )}
                     </Box>
                 </VStack>
             </Center>

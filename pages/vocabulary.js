@@ -25,7 +25,7 @@ export default function Vocabulary(props) {
     const length = props.objectData.length
     const word = props.objectData[index].word
     const pinyin = props.objectData[index].pinyin
-    const pinyin_button = isClickedPinyin ? pinyin : "拼音を見る"
+    const button_text = isClickedPinyin ? pinyin : "拼音を見る"
     return (
         <Box>
             <CloseButton />
@@ -39,7 +39,12 @@ export default function Vocabulary(props) {
                     <VStack width="250px">
                         <Text>No. {index + 1}</Text>
                         <Box fontSize="6xl">{word}</Box>
-                        <Button onClick={() => setClickedPinyin(true)}>{pinyin_button}</Button>
+                        <Button
+                            colorScheme="teal"
+                            variant="outline"
+                            onClick={() => setClickedPinyin(true)}>
+                            {button_text}
+                        </Button>
                     </VStack>
                     <NextButton onClick={() => {
                         setClickedPinyin(false)

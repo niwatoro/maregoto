@@ -18,7 +18,9 @@
     "fs": "^0.0.1-security",
     "math": "^0.0.3",
     "next": "12.2.5",
+    "nodejieba": "^2.6.0",
     "path": "^0.12.7",
+    "pinyin": "^3.0.0-alpha.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0"
