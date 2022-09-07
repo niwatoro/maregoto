@@ -25,6 +25,7 @@ export default function Vocabulary(props) {
     const length = props.objectData.length
     const word = props.objectData[index].word
     const pinyin = props.objectData[index].pinyin
+    const description = props.objectData[index].description
     const button_text = isClickedPinyin ? pinyin : "拼音を見る"
     return (
         <Box>
@@ -50,6 +51,12 @@ export default function Vocabulary(props) {
                         setClickedPinyin(false)
                         setIndex(Math.min(length - 1, index + 1))
                     }} />
+                </Center>
+                <Center>
+                <Box width="600px">
+                    {description}
+                </Box>
+
                 </Center>
             </Box>
         </Box>
