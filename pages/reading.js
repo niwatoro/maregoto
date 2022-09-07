@@ -64,7 +64,7 @@ export default function Reading() {
                                             onClick={() => {
                                                 toast.closeAll()
                                                 toast({
-                                                    title: pinyin(elem)
+                                                    title: elem + ": " + pinyin(elem)
                                                 })
                                             }}>
                                             {elem}
