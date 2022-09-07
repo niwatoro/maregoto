@@ -8,6 +8,9 @@ import {
     Progress,
     Button,
     Text,
+    ListItem,
+    UnorderedList,
+    Select,
     useControllableState
 } from "@chakra-ui/react"
 import {
@@ -21,42 +24,58 @@ import path from "path"
 export default function Vocabulary(props) {
     const [index, setIndex] = useControllableState({ defaultValue: 0 })
     const [isClickedPinyin, setClickedPinyin] = useState(false)
+    const [isClickedDesc, setClickedDesc] = useState(false)
 
     const length = props.objectData.length
-    const word = props.objectData[index].word
-    const pinyin = props.objectData[index].pinyin
-    const description = props.objectData[index].description
-    const button_text = isClickedPinyin ? pinyin : "拼音を見る"
+    const data = props.objectData[index]
+    const word = data.word
+    const pinyin = data.pinyin
+    const description = data.description
+
     return (
         <Box>
             <CloseButton />
             <Progress value={index / length * 100} />
             <Box>
-                <Center margin="50px">
+                <Center margin="50px 50px 10px">
                     <BackButton onClick={() => {
                         setClickedPinyin(false)
+                        setClickedDesc(false)
                         setIndex(Math.max(0, index - 1))
                     }} />
-                    <VStack width="250px">
+                    <VStack width="300px">
                         <Text>No. {index + 1}</Text>
                         <Box fontSize="6xl">{word}</Box>
                         <Button
+                            width="300px"
                             colorScheme="teal"
                             variant="outline"
                             onClick={() => setClickedPinyin(true)}>
-                            {button_text}
+                            {isClickedPinyin ? pinyin : "拼音を見る"}
                         </Button>
                     </VStack>
                     <NextButton onClick={() => {
                         setClickedPinyin(false)
+                        setClickedDesc(false)
                         setIndex(Math.min(length - 1, index + 1))
                     }} />
                 </Center>
                 <Center>
-                <Box width="600px">
-                    {description}
-                </Box>
-
+                    <Button
+                        whiteSpace="unset"
+                        colorScheme="teal"
+                        variant="outline"
+                        width="300px"
+                        height="200px"
+                        onClick={() => setClickedDesc(true)}>
+                        {isClickedDesc
+                            ? <UnorderedList>
+                                {description.split("\n").map((elem, idx) =>
+                                    <ListItem key={idx}>{elem}</ListItem>
+                                )}
+                            </UnorderedList>
+                            : "意味を見る"}
+                    </Button>
                 </Center>
             </Box>
         </Box>

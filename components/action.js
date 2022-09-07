@@ -28,17 +28,17 @@ function BaseButton({ href, icon, colorScheme }) {
 export function VocabularyButton() {
     return (
         <BaseButton
-        href="vocabulary"
-        icon={<GiBrain />}
-        colorScheme="teal" />
+            href="vocabulary"
+            icon={<GiBrain />}
+            colorScheme="teal" />
     )
 }
 
 export function ReadingButton() {
     return (
         <BaseButton
-        href="reading"
-        icon={<GiSpellBook />}
-        colorScheme="pink" />
+            href="reading"
+            icon={<GiSpellBook />}
+            colorScheme="pink" />
     )
 }
