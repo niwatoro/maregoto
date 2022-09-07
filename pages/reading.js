@@ -51,7 +51,7 @@ export default function Reading() {
         <Box>
             <CloseButton />
             <Center>
-                <VStack width="600px">
+                <VStack width="600px" margin="20px">
                     <Heading>{data.title}</Heading>
                     <Box>
                         {data.body.split("\n").map((elem, idx) =>
@@ -60,6 +60,7 @@ export default function Reading() {
                                     [...elem].map((elem, idx) =>
                                         <WrapItem
                                             key={idx}
+                                            fontSize="xl"
                                             onClick={() => {
                                                 toast.closeAll()
                                                 toast({
