@@ -78,7 +78,8 @@ export default class Reading extends Component {
                                 this.LoadText()
                             }}
                             value={article_id}
-                            margin="20px"
+                            marginTop="20px"
+                            marginRight="10px"
                             height="50px"
                             width="400px">
                             {data_id.map((elem, idx) =>
